@@ -80,8 +80,8 @@ class TelegraphHelper:
 
 
 telegraph = TelegraphHelper(
-    "HUB4VF-FILTER-BOT",
-    "https://t.me/BOT_UPDATE_HUB4VF",
+    "KDI DRAMA",
+    "https://t.me/Nkdcrazy",
 )
 
 print(__name__)
