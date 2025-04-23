@@ -427,7 +427,7 @@ async def get_start_msg_buttons(key=None, query=None):
         button_maker.add_row([('⋞ ʙᴀᴄᴋ', 'sbthelp about'), ('• ᴄʟᴏsᴇ •', 'sbthelp close_data')])
         text = config_dict['SOURCE_TXT'] if len(config_dict['SOURCE_TXT']) != 0 else 'None'
     elif key == 'mydevelopers':
-        text ="""🎯 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 𝐏𝐫𝐨𝐟𝐢𝐥𝐞\n\n👨‍💻 𝗡𝗮𝗺𝗲: <a href="https://t.me/LazyIron"> ʟᴀᴢʏɪʀᴏɴ </a>\n🐍 𝗦𝗸𝗶𝗹𝗹: ᴘʏᴛʜᴏɴ ᴅᴇᴠᴇʟᴏᴘᴇʀ\n📚 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗣𝗮𝘁𝗵: sᴇʟғ-ᴛᴀᴜɢʜᴛ — ɴᴏ ғᴏʀᴍᴀʟ ᴄᴏᴜʀsᴇs, ᴊᴜsᴛ ᴄᴏᴅᴇ ᴀɴᴅ ᴄᴜʀɪᴏsɪᴛʏ! 🚀\n\n📡 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: <a href="https://t.me/BOT_UPDATE_HUB4VF"> ʜᴜʙ𝟺ᴠғ ʙᴏᴛ </a>\n🔧 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀: ʙᴏᴛ ᴅᴇᴠᴇʟᴏᴘᴍᴇɴᴛ, ᴀᴜᴛᴏᴍᴀᴛɪᴏɴ, ᴀɴᴅ ᴄʀᴇᴀᴛɪᴠᴇ ᴄᴏᴅɪɴɢ!\n\n💡 𝗧𝗲𝗰𝗵 𝗦𝘁𝗮𝗰𝗸: ᴘʏᴛʜᴏɴ (ᴍᴀɪɴ), ғʟᴀsᴋ & ғᴀsᴛᴀᴘɪ, ᴍᴏɴɢᴏᴅʙ & ᴅᴏᴄᴋᴇʀ\n\n✨ ᴄᴏᴅᴇ ʙʏ ᴘᴀssɪᴏɴ, ɴᴏᴛ ʙʏ ᴄʜᴏɪᴄᴇ — ʟᴇᴛ ᴛʜᴇ ʟɪɴᴇs sᴘᴇᴀᴋ! ✨"""
+        text ="""🎯 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 𝐏𝐫𝐨𝐟𝐢𝐥𝐞\n\n👨‍💻 𝗡𝗮𝗺𝗲: <a href="https://t.me/yt_farman"> ут fαямαи </a>\n🐍 𝗦𝗸𝗶𝗹𝗹: ᴘʏᴛʜᴏɴ ᴅᴇᴠᴇʟᴏᴘᴇʀ\n📚 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗣𝗮𝘁𝗵: sᴇʟғ-ᴛᴀᴜɢʜᴛ — ɴᴏ ғᴏʀᴍᴀʟ ᴄᴏᴜʀsᴇs, ᴊᴜsᴛ ᴄᴏᴅᴇ ᴀɴᴅ ᴄᴜʀɪᴏsɪᴛʏ! 🚀\n\n📡 𝗖𝗵𝗮𝗻𝗻𝗲𝗹: <a href="https://t.me/Nkdcrazy"> KDI DRAMA </a>\n🔧 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀: ʙᴏᴛ ᴅᴇᴠᴇʟᴏᴘᴍᴇɴᴛ, ᴀᴜᴛᴏᴍᴀᴛɪᴏɴ, ᴀɴᴅ ᴄʀᴇᴀᴛɪᴠᴇ ᴄᴏᴅɪɴɢ!\n\n💡 𝗧𝗲𝗰𝗵 𝗦𝘁𝗮𝗰𝗸: ᴘʏᴛʜᴏɴ (ᴍᴀɪɴ), ғʟᴀsᴋ & ғᴀsᴛᴀᴘɪ, ᴍᴏɴɢᴏᴅʙ & ᴅᴏᴄᴋᴇʀ\n\n✨ ᴄᴏᴅᴇ ʙʏ ᴘᴀssɪᴏɴ, ɴᴏᴛ ʙʏ ᴄʜᴏɪᴄᴇ — ʟᴇᴛ ᴛʜᴇ ʟɪɴᴇs sᴘᴇᴀᴋ! ✨"""
         button_maker.add_row([('⋞ ʙᴀᴄᴋ', 'sbthelp about'), ('• ᴄʟᴏsᴇ •', 'sbthelp close_data')])
     elif key == 'futures':
         text = config_dict['START_TEXT']
