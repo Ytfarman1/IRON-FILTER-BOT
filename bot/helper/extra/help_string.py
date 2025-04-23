@@ -7,12 +7,12 @@ IRON_START_TEXT = """
    ✅ ꜱᴜᴘᴇʀ ꜰᴀꜱᴛ ʀᴇꜱᴘᴏɴꜱᴇ 🔄  
    ✅ ᴅᴇꜰᴀᴜʟᴛ ꜰɪʟᴛᴇʀɪɴɢ ᴏᴘᴛɪᴏɴꜱ 📂\n
 💡 ᴛʏᴘᴇ ʏᴏᴜʀ ꜱᴇᴀʀᴄʜ ᴋᴇʏᴡᴏʀᴅꜱ ᴀɴᴅ ʟᴇᴛ ᴍᴇ ᴅᴏ ᴛʜᴇ ʀᴇꜱᴛ! 🚀\n
-🔹 <b>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ :</b> <a href='https://t.me/HUB4VF'>HUB4VF</a>
+🔹 <b>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ :</b> <a href='https://t.me/yt_farman'>ут fαямαи</a>
 """
 
 IRON_RESULT_TEXT = """✨ 𝒀𝒐𝒖𝒓 𝒔𝒆𝒂𝒓𝒄𝒉 𝒊𝒔 𝒅𝒐𝒏𝒆! 𝑯𝒆𝒓𝒆'𝒔 𝒘𝒉𝒂𝒕 𝑰 𝒇𝒐𝒖𝒏𝒅 🔍\n📌 𝒀𝒐𝒖 𝒔𝒆𝒂𝒓𝒄𝒉𝒆𝒅 𝒇𝒐𝒓: {query}\n👤 𝒀𝒐𝒖𝒓 𝒏𝒂𝒎𝒆: {user_mention}\n📊 𝑻𝒐𝒕𝒂𝒍 𝒓𝒆𝒔𝒖𝒍𝒕𝒔: {query_total_results}"""
 
-IRON_CUSTOM_FILE_CAPTION = """<b>• {file_name}\n\n• ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href="https://t.me/HUB4VF">HUB4VF</a></b>"""
+IRON_CUSTOM_FILE_CAPTION = """<b>• {file_name}\n\n• ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href="https://t.me/Nkdcrazy">KDI Drama</a></b>"""
 
 IRON_IMDB_TEMPLATE_TXT = """
 <b>🎬 Query: {query}</b>
@@ -40,8 +40,8 @@ IRON_ALRT_TXT = """
 IRON_ABOUT_TEXT = """
 
 ╔═━━━◥◣◆◢◤━━━═╗  
-║ 🤖 <b>BOT:</b> IRON-FILTER-BOT  
-║ 👨‍💻 <b>DEV:</b> <a href='https://t.me/LazyIron'>Iron Man</a> | <a href='https://t.me/Princerxyz'>Prince Ahir</a>  
+║ 🤖 <b>BOT:</b> KDI-FILTER-BOT  
+║ 👨‍💻 <b>DEV:</b> <a href='https://t.me/yt_farman'>ут fαямαи</a> | <a href='https://t.me/YtJiomusic'>˹𝙅𝙞𝙤 𝙈𝙪𝙨𝙞𝙘˼ 🫧</a>  
 ║ 📚 <b>LIB:</b> ᴘʏʀᴏɢʀᴀᴍ  
 ║ 🐍 <b>LANGUAGE:</b> ᴘʏᴛʜᴏɴ  
 ║ 🗄 <b>DATABASE:</b> ᴍᴏɴɢᴏᴅʙ  
@@ -98,9 +98,9 @@ IRON_DISCLAIMER_TXT = """
 IRON_SOURCE_TXT = """
 <b>💡 Wanna Peek Inside?</b>  
 👀 **Source Code Available Here:**  
-<blockquote>🎯 <a href="https://t.me/BOT_UPDATE_HUB4VF">HUB4VF BOT</a></blockquote>  
+<blockquote>🎯 <a href="https://t.me/https://t.me/Nkdcrazy">KDI DRAMA</a></blockquote>  
 
-⚙️ **Crafted By**: <a href='https://t.me/LazyIron'>𝗜𝗥𝗢𝗡 𝗠𝗔𝗡 🦾 </a>
+⚙️ **Crafted By**: <a href='https://t.me/yt_farman'>ут fαямαи 🦾 </a>
 """ 
 
 IRON_HELP_TXT = """<b>ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴꜱ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ᴅᴏᴄᴜᴍᴇɴᴛᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ꜱᴘᴇᴄɪꜰɪᴄ ᴍᴏᴅᴜʟᴇꜱ..</b>"""
