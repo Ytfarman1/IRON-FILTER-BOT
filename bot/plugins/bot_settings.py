@@ -192,9 +192,20 @@ async def get_buttons(key=None, edit_type=None, edit_mode=None, mess=None):
         buttons.callback("Close", "botset close", position="footer")
         if edit_mode and key in [
             "CMD_SUFFIX",
-            "DATABASE_CHANNEL"
+            "DATABASE_CHANNEL",
+            "FILE_BIN_CHANNEL",
+            "FSUB_IDS",
+            "LOG_CHANNEL",
+            "OWNER_ID",
+            "UPSTREAM_REPO",
+            "UPSTREAM_BRANCH",
+            "TELEGRAM_API",
+            "TELEGRAM_HASH",
+            "DATABASE_URL",
+            "SET_COMMANDS",
+            "SUDO_USERS",
         ]:
-            msg += "<b>Note:</b> Restart required for this edit to take effect!\n\n"
+            msg += "⚠️ <b>Note:</b> Restart required for this edit to take effect!\n\n"
         if edit_mode and key not in bool_vars:
             msg += "Send a valid value for the above Var. <b>Timeout:</b> 60 sec"
         if key in bool_vars:

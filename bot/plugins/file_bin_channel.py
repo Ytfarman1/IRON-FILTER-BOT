@@ -28,4 +28,4 @@ async def file_bin_channel(_, message):
 media_filter = document | video | audio
 
 if file_bin_channel_id:
-    bot.add_handler(MessageHandler(file_bin_channel, filters= chat(file_bin_channel_id) & media_filter))
+   bot.add_handler(MessageHandler(file_bin_channel, filters= chat(file_bin_channel_id) & media_filter))

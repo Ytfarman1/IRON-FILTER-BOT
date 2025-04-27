@@ -127,7 +127,7 @@ async def start_file_sender(client, message, pre, file_id):
     
     if ids := config_dict['FSUB_IDS']:
         mode = config_dict['REQ_JOIN_FSUB']
-        msg, button = await forcesub(message=message, ids=ids, request_join=mode)
+        msg, button = await forcesub(message=message, pre=pre, file_id=file_id, ids=ids, request_join=mode)
         if msg:
             await message.reply(msg, reply_markup=button.build())
             return
@@ -680,6 +680,18 @@ async def handle_extract_data(client, message):
         if download_path and os.path.exists(download_path):
             os.remove(download_path)
 
+async def fsub_reqest_checker(client, query: CallbackQuery):
+    data = query.data.split()
+    if len(data) < 3:
+        await query.answer("Invalid data.")
+        return
+    pre = data[1]
+    file_id = data[2]
+    await delete_message(query.message)
+    await delete_message(query.message.reply_to_message)
+    await query.answer(url=f"https://t.me/{bot_name}?start={pre}_{file_id}")
+
+
 bot.add_handler(
     CallbackQueryHandler(start_msg_callback_handler, filters= regex("^sbthelp"))
 )
@@ -720,5 +732,10 @@ bot.add_handler(
 bot.add_handler(
     MessageHandler(
         get_id, filters= command(BotCommands.GetIDCommand)
+    )
+)
+bot.add_handler(
+    CallbackQueryHandler(
+        fsub_reqest_checker, filters=regex("^fsub_check")
     )
 )
