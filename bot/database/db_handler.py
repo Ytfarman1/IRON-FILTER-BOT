@@ -250,6 +250,9 @@ class DbManager:
         try:
             channel_id = str(channel_id)
             await self.__db.fsub[bot_id][channel_id].insert_one({"_id": int(user_id)})
+            LOGGER.info(f"User {user_id} added to fsub {channel_id}.")
+        except DuplicateKeyError:
+            LOGGER.warning(f"User {user_id} already exists in fsub {channel_id}.")
         except Exception as e:
             LOGGER.error(f"Error adding user to fsub {e}")
             pass

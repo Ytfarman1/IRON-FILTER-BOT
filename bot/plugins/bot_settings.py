@@ -30,7 +30,6 @@ from bot.helper.telegram_helper.message_utils import (
     send_message,
     delete_message
 )
-from bot.plugins.join_req_fsub import initialize_auth_channels, add_handlers
 from bot.helper.extra.help_string import *
 
 
@@ -285,11 +284,6 @@ async def update_variable(message):
                 await update_buttons(initial_message, key, 'editvar', False)
                 handler_dict[chat_id] = False
                 event_data[chat_id] = None
-                if key == 'FSUB_IDS':
-                    # Re-initialize channels and add handlers after updating
-                    await chnl_check(FSUB=True, send_error=True)
-                    initialize_auth_channels()
-                    add_handlers()
             except Exception as e:
                 LOGGER.error(f"Error updating database or buttons: {e}")
 
