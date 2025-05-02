@@ -245,11 +245,10 @@ async def isAdmin(message, user_id=None):
         member = await message.chat.get_member(message.from_user.id)
     return member.status in [member.status.ADMINISTRATOR, member.status.OWNER]
 
-async def forcesub(message, pre, file_id, ids, button=None, request_join=False):
+async def forcesub(message, ids, pre='file', file_id=None, ikey=None, button=None, request_join=False):
     join_button = {}
     _msg = ""
     all_joined = True  # Flag to check if the user has joined all channels
-
     for channel_id in ids.split():
         chat = await chat_info(channel_id)
         try:
@@ -305,7 +304,10 @@ async def forcesub(message, pre, file_id, ids, button=None, request_join=False):
             _msg = "You haven't joined our channel/group yet!"
             for key, value in join_button.items():
                 button.add_button(text=f"Join {key}", url=value)
-            button.add_button(text='🔄 ᵀᴿʸ ᴬᴳᴬᴵᴺ 🔄', callback_data=f'fsub_check {pre} {file_id}')
+            if file_id:
+                button.add_button(text='🔄 ᵀᴿʸ ᴬᴳᴬᴵᴺ 🔄', callback_data=f'fsub_check {pre} {file_id}')
+            if ikey:
+                button.add_button(text='🔄 ᵀᴿʸ ᴬᴳᴬᴵᴺ 🔄', callback_data=f'fsub_check {pre} {ikey}')
     else:
         _msg = None  # User has joined all channels
 

@@ -1,4 +1,5 @@
 import re, math, datetime, pytz, asyncio
+from asyncio import sleep
 from datetime import datetime, timedelta, date, time
 from imdb import Cinemagoer 
 from pyrogram import filters
@@ -11,9 +12,9 @@ from bot.database.db_utils import get_search_results, get_size, get_file_details
 from bot.database.db_handler import DbManager
 from bot import LOGGER as logger, bot, config_dict, bot_name, handler_dict, user_data, broadcast_handler_dict, deldbfiles_handler_dict
 from bot.helper.extra.bot_utils import list_to_str
-from bot.helper.telegram_helper.message_utils import forcesub, BotPm_check, send_message, editReplyMarkup, edit_message, delete_message, auto_delete_incoming_user_message, auto_delete_filter_result_message
-from bot.plugins.bot_settings import update_variable
+from bot.helper.telegram_helper.message_utils import forcesub, BotPm_check, send_message, editReplyMarkup, edit_message, delete_message, auto_delete_incoming_user_message, auto_delete_filter_result_message, convert_seconds_to_minutes
 from bot.plugins.broadcast import update_broadcast_variable
+from bot.plugins.bot_settings import update_variable
 from bot.plugins.delete_dbfiles import deldbfiles_update_variable
 
 imdb = Cinemagoer()
@@ -650,11 +651,12 @@ async def auto_filter_file_sender(client, query: CallbackQuery):
     try:
         clicked = query.from_user.id
         data = query.data.split("#")
+
         if len(data) != 3:
             return await query.answer("This invalid data.Please request new.", show_alert=True)
         
         ident, file_id, req = query.data.split("#")
-        if req != 'file':
+        if req not in ['file', 'sendfiles']:
             if int(req) not in [query.from_user.id, 0]:
                 return await query.answer(ALRT_TXT.format(query.from_user.first_name), show_alert=True)
         files_ = await get_file_details(file_id)
@@ -1323,7 +1325,7 @@ async def send_files_handler(client, query):
         return await query.answer(ALRT_TXT.format(query.from_user.first_name), show_alert=True)
     
     if BUTTONS.get(key) is not None:
-            search = BUTTONS.get(key)
+        search = BUTTONS.get(key)
     else:
         search = FRESH.get(key)
         
@@ -1338,11 +1340,21 @@ async def on_start_cmd_senfiles_handler(client, message):
     cmd = message.command[1]
 
     key = cmd.split('_')[1]
-
+    pre = cmd.split('_')[0]
     files = GETALL.get(key, None)
 
     if not files:
         return await send_message(message, "Invalid or old data.\n\nPlease send your query again")
+    
+    if ids := config_dict['FSUB_IDS']:
+        mode = config_dict['REQ_JOIN_FSUB']
+        msg, button = await forcesub(message=message, ids=ids, pre=pre, ikey=key, request_join=mode)
+        if msg:
+            await message.reply(msg, reply_markup=button.build())
+            return
+    if len(config_dict['UPDT_BTN_URL']) != 0:
+        button_maker.add_button(text="📰 ᴜᴘᴅᴀᴛᴇꜱ 📰", url=config_dict['UPDT_BTN_URL'])
+    iron_button = button_maker.build()
     iron_msg = []
     for file in files:
         title = file.file_name
@@ -1357,15 +1369,6 @@ async def on_start_cmd_senfiles_handler(client, message):
         if f_caption is None:
             f_caption = f"{file.file_name}"
 
-        if ids := config_dict['FSUB_IDS']:
-            mode = config_dict['REQ_JOIN_FSUB']
-            msg, button = await forcesub(message=message, ids=ids, request_join=mode)
-            if msg:
-                await message.reply(msg, reply_markup=button.build())
-                return
-        if len(config_dict['UPDT_BTN_URL']) != 0:
-            button_maker.add_button(text="📰 ᴜᴘᴅᴀᴛᴇꜱ 📰", url=config_dict['UPDT_BTN_URL'])
-        iron_button = button_maker.build()
         if len(iron_msg) != 0:
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
@@ -1387,9 +1390,19 @@ async def on_start_cmd_senfiles_handler(client, message):
 
     if len(iron_msg) != 0:
         if config_dict['AUTO_FILE_DELETE_MODE'] == True and not config_dict['FILE_SECURE_MODE']:
+            btn = [[
+                InlineKeyboardButton("❗ ɢᴇᴛ ꜰɪʟᴇ ᴀɢᴀɪɴ ❗", callback_data=f'resendfile#{key}#{pre}')
+            ]]
+            if config_dict['AUTO_FILE_DELETE_MODE_TIMEOUT'] > 60:
+                MINUTE = await convert_seconds_to_minutes(config_dict['AUTO_FILE_DELETE_MODE_TIMEOUT'])
+                k = await send_message(msg, text=f"<b>❗️ <u>ɪᴍᴘᴏʀᴛᴀɴᴛ</u> ❗️</b>\n\n<b>ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ</b> <b><u>{MINUTE} ᴍɪɴᴜᴛᴇꜱ</u> </b><b>(ᴅᴜᴇ ᴛᴏ ᴄᴏᴘʏʀɪɢʜᴛ ɪꜱꜱᴜᴇꜱ).</b>\n\n<b><i>📌 ᴘʟᴇᴀꜱᴇ ꜰᴏʀᴡᴀʀᴅ ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴛᴏ ꜱᴏᴍᴇᴡʜᴇʀᴇ ᴇʟꜱᴇ.</i></b>", buttons = None)
+            else:
+                k = await send_message(msg, text=f"<b>❗️ <u>ɪᴍᴘᴏʀᴛᴀɴᴛ</u> ❗️</b>\n\n<b>ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ</b> <b><u>{config_dict['AUTO_FILE_DELETE_MODE_TIMEOUT']} ꜱᴇᴄᴏɴᴅꜱ</u> </b><b>(ᴅᴜᴇ ᴛᴏ ᴄᴏᴘʏʀɪɢʜᴛ ɪꜱꜱᴜᴇꜱ).</b>\n\n<b><i>📌 ᴘʟᴇᴀꜱᴇ ꜰᴏʀᴡᴀʀᴅ ᴛʜɪꜱ ᴠɪᴅᴇᴏ / ꜰɪʟᴇ ᴛᴏ ꜱᴏᴍᴇᴡʜᴇʀᴇ ᴇʟꜱᴇ.</i></b>", buttons = None)
             await asyncio.sleep(config_dict['AUTO_FILE_DELETE_MODE_TIMEOUT'])
             for i_msg in iron_msg:
                 await delete_message(i_msg)
+            await delete_message(k)
+                
 
 
 
